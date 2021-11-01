@@ -1,13 +1,13 @@
 <template>
     <div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus mr-2" style="font-size: 20px; color: white;"></i>
         Ajoutez une tâche
         </button>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-success" @click="taskStore">Creer ma tâche</button>
+                <button type="submit" class="btn btn-success" @click="taskStore"><i class="bi bi-check mr-2" style="color: white;"></i>Creer ma tâche</button>
             </div>
             </div>
         </div>
@@ -52,6 +52,12 @@
                 .then(response => this.$emit('Task-added', response))
                 .catch(error => console.log(error));
                 this.name = '';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tâche ajouté avec succes',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }
         }
     }

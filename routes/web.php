@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('/taskslist', 'TasksController@index');
 Route::post('/taskslist', 'TasksController@store');
+Route::get('/task/edit/{id}', 'TasksController@edit');

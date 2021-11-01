@@ -9,8 +9,11 @@
         <!-- Fonts -->
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('css/icon/bootstrap-icons.css')}}" rel="stylesheet">
+        <link href="{{asset('css/sweetalert2.css')}}" rel="stylesheet">
         <script src="{{asset('js/popper.js')}}"></script>
         <script src="{{asset('js/bootstrap.js')}}"></script>
+        <script src="{{asset('js/sweetalert2.js')}}"></script>
 
         <!-- Styles -->
     </head>
@@ -25,10 +28,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        <router-link to="/" class="nav-link active router-link-activ">Accueil</router-link>
+                        <router-link to="/" class="nav-link active router-link-activ"><i class="bi bi-house-door mr-2"></i>Accueil</router-link>
                         </li>
                         <li class="nav-item">
-                        <router-link to="/tasks" class="nav-link">Liste des Taches</router-link>
+                        <router-link to="/tasks" class="nav-link"><i class="bi bi-card-list mr-2"></i>Liste des Taches</router-link>
                         </li>
                     </ul>
                     </div>
