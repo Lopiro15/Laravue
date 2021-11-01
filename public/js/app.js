@@ -53009,7 +53009,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 var routes = [{
-  path: '/home',
+  path: '/',
   component: _components_HomeComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
   path: '/tasks',

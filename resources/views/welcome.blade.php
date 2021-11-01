@@ -22,7 +22,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        <router-link to="/home" class="nav-link active router-link-activ">Accueil</router-link>
+                        <router-link to="/" class="nav-link active router-link-activ">Accueil</router-link>
                         </li>
                         <li class="nav-item">
                         <router-link to="/tasks" class="nav-link">Liste des Taches</router-link>

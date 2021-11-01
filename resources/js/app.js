@@ -27,7 +27,7 @@ import Home from './components/HomeComponent.vue';
 import Task from './components/TaskComponent.vue';
 
 const routes = [{
-        path: '/home',
+        path: '/',
         component: Home
     },
     {
