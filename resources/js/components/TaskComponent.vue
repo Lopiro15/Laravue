@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+
+        <add-task @Task-added="refresh"></add-task>
         <ul class="list-group">
             <li class="list-group-item" v-for="task in tasks.data" :key="task.id">
                 <a href="#">{{ task.name }}</a>
@@ -10,7 +12,9 @@
 </template>
 
 <script>
+import AddTaskComponent from './AddTaskComponent.vue';
     export default {
+  components: { AddTaskComponent },
 
         data() {
             return {
@@ -32,6 +36,10 @@
                     .then(response => {
                         this.tasks = response.data;
                     });
+            },
+
+            refresh(tasks) {
+                this.tasks = tasks.data;
             }
         }
     }

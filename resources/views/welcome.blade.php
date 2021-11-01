@@ -8,6 +8,9 @@
 
         <!-- Fonts -->
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
+        <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
+        <script src="{{asset('js/popper.js')}}"></script>
+        <script src="{{asset('js/bootstrap.js')}}"></script>
 
         <!-- Styles -->
     </head>
