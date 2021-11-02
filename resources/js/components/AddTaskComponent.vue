@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="submit" class="btn btn-success" @click="taskStore"><i class="bi bi-check mr-2" style="color: white;"></i>Creer ma tâche</button>
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-success" @click="taskStore"><i class="bi bi-check mr-2" style="color: white;"></i>Creer ma tâche</button>
             </div>
             </div>
         </div>
@@ -52,12 +52,6 @@
                 .then(response => this.$emit('Task-added', response))
                 .catch(error => console.log(error));
                 this.name = '';
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Tâche ajouté avec succes',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
             }
         }
     }

@@ -9,7 +9,7 @@
                     <i class="bi bi-pencil-fill mr-2" style="color: white;"></i>Editer
                 </button>
             </li>
-            <edit-task v-bind:taskToEdit = 'tasktoedit'></edit-task>
+            <edit-task v-bind:taskToEdit = 'tasktoedit' @task-updated="refresh"></edit-task>
         </ul>
         <pagination :data="tasks" @pagination-change-page="getResults" class="mt-5"></pagination>
     </div>
@@ -45,7 +45,7 @@ import EditTaskComponent from './EditTaskComponent.vue';
             },
             getTask(id) {
                 axios.get('http://127.0.0.1:8000/task/edit/' + id)
-                    .then(response => this.tasktoedit = response.data.name)
+                    .then(response => this.tasktoedit = response.data)
                     .catch(error => console.log(error));
             },
             refresh(tasks) {
