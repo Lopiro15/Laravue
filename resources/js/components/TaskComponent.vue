@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-
+        <div class="form-row">
+            <div class="col-row">
+                <input type="text" class="form-control" @keyup="searchTask" v-model="q" placeholder="Rechercher une tâche...">
+            </div>
+        </div>
         <add-task @Task-added="refresh"></add-task>
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center" v-for="task in tasks.data" :key="task.id">
@@ -27,7 +31,8 @@ import EditTaskComponent from './EditTaskComponent.vue';
         data() {
             return {
                 tasks: {},
-                tasktoedit: ''
+                tasktoedit: '',
+                q: ''
             }
         },
         created() {
@@ -73,6 +78,17 @@ import EditTaskComponent from './EditTaskComponent.vue';
                         );
                     }
                 });
+            },
+            searchTask() {
+                if (this.q.length > 0) {
+                    axios.get('http://127.0.0.1:8000/taskslist/' + this.q)
+                        .then(response => this.tasks = response.data)
+                        .catch(error => console.log(error));
+                } else {
+                    axios.get('http://127.0.0.1:8000/taskslist')
+                        .then(response => this.tasks = response.data)
+                        .catch(error => console.log(error));
+                }
             },
             refresh(tasks) {
                 this.tasks = tasks.data;
