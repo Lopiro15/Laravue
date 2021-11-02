@@ -2077,6 +2077,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2119,6 +2122,29 @@ __webpack_require__.r(__webpack_exports__);
         return _this3.tasktoedit = response.data;
       })["catch"](function (error) {
         return console.log(error);
+      });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this4 = this;
+
+      Swal.fire({
+        title: 'Etes vous sûre?',
+        text: "Cette action est irréversible",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmer',
+        cancelButtonText: 'Annuler'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('http://127.0.0.1:8000/task/' + id).then(function (response) {
+            return _this4.tasks = response.data;
+          })["catch"](function (error) {
+            return console.log(error);
+          });
+          Swal.fire('Effectué!', 'La tâche a été supprimée.', 'success');
+        }
       });
     },
     refresh: function refresh(tasks) {
@@ -38637,29 +38663,51 @@ var render = function () {
               [
                 _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(task.name))]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: {
-                      type: "button",
-                      "data-bs-toggle": "modal",
-                      "data-bs-target": "#EditModal",
-                    },
-                    on: {
-                      click: function ($event) {
-                        return _vm.getTask(task.id)
+                _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: {
+                        type: "button",
+                        "data-bs-toggle": "modal",
+                        "data-bs-target": "#EditModal",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getTask(task.id)
+                        },
                       },
                     },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "bi bi-pencil-fill mr-2",
-                      staticStyle: { color: "white" },
-                    }),
-                    _vm._v("Editer\n            "),
-                  ]
-                ),
+                    [
+                      _c("i", {
+                        staticClass: "bi bi-pencil-fill mr-2",
+                        staticStyle: { color: "white" },
+                      }),
+                      _vm._v("Editer\n            "),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.deleteTask(task.id)
+                        },
+                      },
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "bi bi-trash-fill mr-2",
+                        staticStyle: { color: "white" },
+                      }),
+                      _vm._v("Supprimer"),
+                    ]
+                  ),
+                ]),
               ]
             )
           }),

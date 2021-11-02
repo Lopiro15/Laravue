@@ -92,7 +92,11 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        
+        if($task->delete()){
+            return $this->refresh();
+        }
     }
 
     private function refresh()

@@ -5,9 +5,12 @@
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center" v-for="task in tasks.data" :key="task.id">
                 <a href="#">{{ task.name }}</a>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#EditModal" @click="getTask(task.id)">
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#EditModal" @click="getTask(task.id)">
                     <i class="bi bi-pencil-fill mr-2" style="color: white;"></i>Editer
                 </button>
+                <button type="button" class="btn btn-danger" @click="deleteTask(task.id)"><i class="bi bi-trash-fill mr-2" style="color: white;"></i>Supprimer</button>
+                </div>
             </li>
             <edit-task v-bind:taskToEdit = 'tasktoedit' @task-updated="refresh"></edit-task>
         </ul>
@@ -47,6 +50,29 @@ import EditTaskComponent from './EditTaskComponent.vue';
                 axios.get('http://127.0.0.1:8000/task/edit/' + id)
                     .then(response => this.tasktoedit = response.data)
                     .catch(error => console.log(error));
+            },
+            deleteTask(id){
+                Swal.fire({
+                    title: 'Etes vous sûre?',
+                    text: "Cette action est irréversible",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmer',
+                    cancelButtonText: 'Annuler'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete('http://127.0.0.1:8000/task/' + id)
+                            .then(response => this.tasks = response.data)
+                            .catch(error => console.log(error));
+                        Swal.fire(
+                        'Effectué!',
+                        'La tâche a été supprimée.',
+                        'success'
+                        );
+                    }
+                });
             },
             refresh(tasks) {
                 this.tasks = tasks.data;
